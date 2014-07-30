@@ -1,0 +1,29 @@
+<h1>Listing treasurers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @treasurers.each do |treasurer| %>
+      <tr>
+        <td><%= treasurer.name %></td>
+        <td><%= treasurer.email %></td>
+        <td><%= link_to 'Show', treasurer %></td>
+        <td><%= link_to 'Edit', edit_treasurer_path(treasurer) %></td>
+        <td><%= link_to 'Destroy', treasurer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Treasurer', new_treasurer_path %>

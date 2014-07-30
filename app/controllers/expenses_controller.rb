@@ -4,6 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
+    @expense = Expense.new
     @expenses = Expense.all
   end
 
@@ -28,11 +29,16 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        
+        format.html { 
+          flash[:notice] = '£#{@expense.amount} - #{@expense.description} [Urgency - #{@expense.urgency.name}].';
+          head :ok
+        }
+
         format.json { render action: 'show', status: :created, location: @expense }
       else
-        format.html { render action: 'new' }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.html { render action: :index, status: :unprocessable_entity }
+        format.json { render json: @expense.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +52,7 @@ class ExpensesController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.json { render json: @expense.errors }
       end
     end
   end
@@ -69,6 +75,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:amount, :description, :whofor, :urgency, :user_id)
+      params.require(:expense).permit(:amount, :description, :treasurer_id, :urgency_id, :user_id)
     end
 end

@@ -1,0 +1,45 @@
+<%= form_for(@expense, remote: true, :html => {:'data-type' => 'json'}) do |f| %>
+  <div id="flash-message">
+    
+  </div>
+  <% if flash[:notice] %>    
+    <p id="notice" class="alert alert-success"><%= flash[:notice] %></p> 
+    <p id="notice" class="alert alert-info"><strong>Added: </strong><%= flash[:expense]%></p> 
+
+  <% end %>
+  <% if @expense.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @expense.errors.full_messages.each do |msg| %>
+        <li class="alert alert-danger"><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="field form-group col-md-4">
+      <%= f.label :amount %>
+      <%= f.number_field :amount, class: "form-control", placeholder: "00.00" %>
+    </div>
+    <div class="field form-group col-md-4">
+      <%= f.label "Who for?" %>
+      <%= f.select(:treasurer_id, [['Stephen', '1'], ['Keith', '2']], {} , { :class => 'form-control'}) %>
+    </div>
+    <div class="field form-group col-md-4">
+      <%= f.label :urgency %>
+      <%= f.select(:urgency_id, [['Normal - Friday', '2'], ['High - ASAP', '1']], {}, { :class => 'form-control' }) %>
+    </div> 
+  </div>
+  <div class="row">   
+    <div class="field form-group col-md-12">
+      <%= f.label :description %>
+      <%= f.text_field :description, class: "form-control", placeholder: "What is it?" %>
+    </div>
+  </div>
+    <%= f.hidden_field :user_id, :value => '1' %>
+  <div class="actions">
+    <%= f.submit 'Add Expense', class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+

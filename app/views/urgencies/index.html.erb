@@ -1,0 +1,27 @@
+<h1>Listing urgencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urgencies.each do |urgency| %>
+      <tr>
+        <td><%= urgency.name %></td>
+        <td><%= link_to 'Show', urgency %></td>
+        <td><%= link_to 'Edit', edit_urgency_path(urgency) %></td>
+        <td><%= link_to 'Destroy', urgency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Urgency', new_urgency_path %>

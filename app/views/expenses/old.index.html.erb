@@ -1,0 +1,35 @@
+<h1>View Expenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Whofor</th>
+      <th>Urgency</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.amount %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.whofor %></td>
+        <td><%= expense.urgency %></td>
+        <td><%= expense.user_id %></td>
+        <td><%= link_to 'Show', expense %></td>
+        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expense', new_expense_path %>

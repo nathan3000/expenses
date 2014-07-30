@@ -1,36 +1,40 @@
 <%provide(:title, 'Expenses') %>
-<h1>Expenses</h1>
+<%provide(:tagline, 'Sending your expenses to Stephen and Keith has never been easier.') %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Amount</th>
-      <th>Description</th>
-      <th>Whofor</th>
-      <th>Urgency</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="page-content">
+      <div class="container">
+        <div class="row">
+          <div class="add-expense col-md-6">
+            <!-- Nav tabs -->
+            <ul id="expenses-tab" class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#add-expenses" data-toggle="tab" role="tab">Add Expense</a></li>
+              <li><a href="#view-expenses" data-toggle="tab" role="tab">View Expenses</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active tab-well well" id="add-expenses">                               
+                <%= render 'add_expenses' %>
+              </div>
+              <div class="tab-pane tab-well well" id="view-expenses">
+                  
+              </div>
+            </div>
+            
+          </div>
 
-  <tbody>
-    <% @expenses.each do |expense| %>
-      <tr>
-        <td><%= expense.amount %></td>
-        <td><%= expense.description %></td>
-        <td><%= expense.whofor %></td>
-        <td><%= expense.urgency %></td>
-        <td><%= expense.user_id %></td>
-        <td><%= link_to 'Show', expense %></td>
-        <td><%= link_to 'Edit', edit_expense_path(expense) %></td>
-        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          
 
-<br>
+          <div class="col-md-6">
+            <h2>Help Guide</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vehicula aliquam sagittis. </p>
+            <p>Duis blandit nunc non ante convallis, eget consectetur lacus dictum. Nunc felis velit, posuere id erat a, rutrum vestibulum est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec ultricies posuere lorem, vel ultrices augue dictum eget.</p>
+            <p>Pellentesque blandit gravida nibh vitae feugiat. Vivamus id vulputate magna. Aliquam erat volutpat. Mauris mattis in quam sit amet pharetra. Duis eu justo eget nibh tincidunt varius. Sed eu lectus congue, laoreet justo sit amet, pharetra elit. In cursus justo vitae nunc sagittis mattis. Donec vitae massa tempus, semper lacus eu, tristique velit. Integer auctor tristique nulla, ac tempus odio iaculis sit amet.</p>
+          </div>
 
-<%= link_to 'New Expense', new_expense_path %>
+
+        </div>
+        
+      </div>
+    </div>
+
+    

@@ -1,5 +1,9 @@
 Expenses::Application.routes.draw do
-  resources :expenses
+  resources :urgencies
+
+  resources :treasurers
+
+  resources :expenses 
 
   resources :users
 

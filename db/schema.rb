@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715083225) do
+ActiveRecord::Schema.define(version: 20140716183531) do
 
   create_table "expenses", force: true do |t|
     t.integer  "amount"
     t.string   "description"
-    t.string   "whofor"
-    t.string   "urgency"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "treasurer_id"
+    t.integer  "urgency_id"
+  end
+
+  create_table "treasurers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "urgencies", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
