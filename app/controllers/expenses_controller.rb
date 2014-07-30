@@ -6,11 +6,18 @@ class ExpensesController < ApplicationController
   def index
     @expense = Expense.new
     @expenses = Expense.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @expenses.to_csv }
+      format.xls #{ send_data @expenses.to_csv(col_sep: "\t") }
+    end
   end
 
   # GET /expenses/1
   # GET /expenses/1.json
   def show
+
   end
 
   # GET /expenses/new
