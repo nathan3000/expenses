@@ -31,7 +31,6 @@ class ExpensesController < ApplicationController
       if @expense.save
         
         format.html { 
-          flash[:notice] = '£#{@expense.amount} - #{@expense.description} [Urgency - #{@expense.urgency.name}].';
           head :ok
         }
 
